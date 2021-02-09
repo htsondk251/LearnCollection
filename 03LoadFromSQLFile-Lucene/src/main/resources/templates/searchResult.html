@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+</head>
+
+<body>
+    <table>
+        <thead style="display:table-header-group">
+            <tr>
+                <th><strong>ID</strong></th>
+                <th><strong>FULLNAME</strong></th>
+                <th><strong>JOB</strong></th>
+                <th><strong>GENDER</strong></th>
+                <th><strong>CITY</strong></th>
+                <th><strong>SALARY</strong></th>
+                <th><strong>BIRTHDAY</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${people}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.fullname}"><a th:href="@{/person/{id}(id=${person.id})}"></a></td>
+                <td th:text="${person.job}"></td>
+                <td th:text="${person.gender}"></td>
+                <td th:text="${person.city}"></td>
+                <td th:text="${person.salary}"></td>
+                <td th:text="${person.birthday}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

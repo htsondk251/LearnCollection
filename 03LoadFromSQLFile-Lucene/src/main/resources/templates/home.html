@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <!-- <div>
+        <a th:href="@{/getAll}">getAll</a><br>
+        <a th:href="@{/sortPeopleByFullNameReversed}">sortPeopleByFullNameReversed</a><br>
+        <a th:href="@{/getSortedJobs}">getSortedJobs</a><br>
+        <a th:href="@{/getSortedCities}">getSortedCities</a><br>
+        <a th:href="@{/groupPeopleByCity}">groupPeopleByCity</a><br>
+        <a th:href="@{/groupJobByCount}">groupJobByCount</a><br>
+        <a th:href="@{/findTop5Jobs}">findTop5Jobs</a><br>
+        <a th:href="@{/findTop5Cities}">findTop5Cities</a><br>
+        <a th:href="@{/findTopJobInCity}">findTopJobInCity</a><br>
+        <a th:href="@{/averageJobSalary}">averageJobSalary</a><br>
+        <a th:href="@{/top5HighestSalaryCities}">top5HighestSalaryCities</a><br>
+        <a th:href="@{/averageJobAge}">averageJobAge</a><br>
+        <a th:href="@{/averageCityAge}">averageCityAge</a><br>
+        <a th:href="@{/find5CitiesHaveMostSpecificJob}">find5CitiesHaveMostSpecificJob</a><br>
+    </div> -->
+
+    <table>
+        <thead style="display:table-header-group">
+            <tr>
+                <th><strong>ID</strong></th>
+                <th><strong>FULLNAME</strong></th>
+                <th><strong>JOB</strong></th>
+                <th><strong>GENDER</strong></th>
+                <th><strong>CITY</strong></th>
+                <th><strong>SALARY</strong></th>
+                <th><strong>BIRTHDAY</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${people}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.fullname}"></td>
+                <td th:text="${person.job}"></td>
+                <td th:text="${person.gender}"></td>
+                <td th:text="${person.city}"></td>
+                <td th:text="${person.salary}"></td>
+                <td th:text="${person.birthday}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div> 
+        Total Items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]] - 
+        &nbsp;
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{'/page/' + ${i}}">[[${i}]]</a> &nbsp;&nbsp;
+        </span>
+    </div>
+
+    <!-- <div style="inline">
+        <label for="items" class="form-label">Total Items</label>
+        <p th:text="${totalItems}"></p>
+    </div>
+    <div style="inline">
+        <label for="pages" class="form-label">Total Pages</label>
+        <p th:text="${totalPages}"></p>
+    </div> -->
+</body>
+
+</html>

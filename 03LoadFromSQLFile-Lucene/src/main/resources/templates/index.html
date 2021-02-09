@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List People</title>
+</head>
+<body>
+    <!-- <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post" style="display:inline">
+        <input type="text" th:field="*{term}" id="term" placeholder="search key">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <br> -->
+    <table>
+        <thead style="display:table-header-group">
+            <tr>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">ID</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=fullname&sortDir=' + ${reverseSortDir}}">FULLNAME</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=job&sortDir=' + ${reverseSortDir}}">JOB</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=gender&sortDir=' + ${reverseSortDir}}">GENDER</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=city&sortDir=' + ${reverseSortDir}}">CITY</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=salary&sortDir=' + ${reverseSortDir}}">SALARY</a>
+                </th>
+                <th>
+                    <a th:href="@{'/page/' + ${currentPage} + '?sortField=birthday&sortDir=' + ${reverseSortDir}}">BIRTHDAY</a>
+                </th>
+                <!-- <th><strong><a th:href="">ID</a></strong></th>
+                <th><strong>FULLNAME</strong></th>
+                <th><strong>JOB</strong></th>
+                <th><strong>GENDER</strong></th>
+                <th><strong>CITY</strong></th>
+                <th><strong>SALARY</strong></th>
+                <th><strong>BIRTHDAY</strong></th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${people}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.fullname}"></td>
+                <td th:text="${person.job}"></td>
+                <td th:text="${person.gender}"></td>
+                <td th:text="${person.city}"></td>
+                <td th:text="${person.salary}"></td>
+                <td th:text="${person.birthday}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a th:if="${currentPage > 1}" th:href="@{/page/1 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
+        <span th:unless="${currentPage > 1}">First</span>
+
+        <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+            <span th:unless="${currentPage != i}">[[${i}]]</span>
+            &nbsp;
+        </span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+    </div>
+
+    <div>
+        <i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i>
+    </div>
+
+</body>
+</html>
